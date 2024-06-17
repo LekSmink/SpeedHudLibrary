@@ -403,7 +403,7 @@ end
 Tab:AddSlider({
     Name = "Player Speed",
     Min = 0,
-    Max = 10000,
+    Max = 1000,
     Default = defaultSpeed,
     Color = Color3.fromRGB(255, 0, 0),
     Increment = 1,
@@ -417,7 +417,7 @@ Tab:AddSlider({
 Tab:AddSlider({
     Name = "Jump Power",
     Min = 0,
-    Max = 30000,
+    Max = 300,
     Default = defaultJumpPower,
     Color = Color3.fromRGB(0, 255, 0),
     Increment = 1,
@@ -431,7 +431,7 @@ Tab:AddSlider({
 Tab:AddSlider({
     Name = "Gravity",
     Min = 0,
-    Max = 50000,
+    Max = 5000,
     Default = defaultGravity,
     Color = Color3.fromRGB(0, 0, 255),
     Increment = 1,
@@ -501,62 +501,11 @@ Tab:AddToggle({
     end    
 })
 
-_G.isFlying = false
-_G.flySpeed = 50
-
-function _G.toggleFly(state)
-    local player = game.Players.LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait()
-    local rootPart = character:WaitForChild("HumanoidRootPart")
-
-    if state then
-        _G.isFlying = true
-        local bodyVelocity = Instance.new("BodyVelocity")
-        bodyVelocity.Velocity = Vector3.new(0, 0, 0)
-        bodyVelocity.MaxForce = Vector3.new(0, 0, 0)
-        bodyVelocity.Parent = rootPart
-
-        _G.flyConnection = game:GetService("RunService").RenderStepped:Connect(function()
-            if _G.isFlying then
-                bodyVelocity.Velocity = Vector3.new(0, _G.flySpeed, 0)
-                bodyVelocity.MaxForce = Vector3.new(0, math.huge, 0)
-            else
-                bodyVelocity.Velocity = Vector3.new(0, 0, 0)
-                bodyVelocity.MaxForce = Vector3.new(0, 0, 0)
-            end
-        end)
-    else
-        _G.isFlying = false
-        if _G.flyConnection then
-            _G.flyConnection:Disconnect()
-        end
-        for _, v in pairs(rootPart:GetChildren()) do
-            if v:IsA("BodyVelocity") then
-                v:Destroy()
-            end
-        end
-    end
-end
-
-Tab:AddToggle({
-    Name = "Fly",
-    Default = false,
-    Callback = function(value)
-        _G.toggleFly(value)
-    end
-})
-
-Tab:AddSlider({
-    Name = "Fly Speed",
-    Min = 15,
-    Max = 100,
-    Default = 50,
-    Color = Color3.fromRGB(255, 255, 255),
-    Increment = 1,
-    ValueName = "Fly Speed",
-    Callback = function(value)
-        _G.flySpeed = value
-    end
+Tab:AddButton({
+	Name = "fly",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
+  	end    
 })
 
 local Tab6 = Window:MakeTab({
@@ -565,19 +514,15 @@ local Tab6 = Window:MakeTab({
 	PremiumOnly = false
 })
 
-local player
-
 local function ReiniciarPlayer()
     local character = player.Character
 
     if character then
         local humanoid = character:FindFirstChildOfClass("Humanoid")
         if humanoid then
-            humanoid.Health = humanoid.MaxHealth -- Define a saúde do Humanoid para o máximo
+            humanoid.Health = 0
         end
 
-        character:SetPrimaryPartCFrame(CFrame.new(0, 0, 0))
-        character:Destroy()
         player.CharacterAdded:Wait()
     end
 end

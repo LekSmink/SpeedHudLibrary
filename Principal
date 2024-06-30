@@ -31,7 +31,7 @@ local function updateExecutionTime()
     local elapsedTime = tick() - startTime
     local elapsedMinutes = math.floor(elapsedTime / 60)
     local elapsedSeconds = math.floor(elapsedTime % 60)
-    executionLabel:Set("Tempo: " .. elapsedMinutes .. " minutos " .. elapsedSeconds .. " segundos")
+    executionLabel:SetText("Tempo: " .. elapsedMinutes .. " minutos " .. elapsedSeconds .. " segundos")
 end
 
 executionLabel = Tab5:AddLabel("Tempo: 0 minutos 0 segundos")

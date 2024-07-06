@@ -15,7 +15,7 @@ OrionLib:MakeNotification({
 })
 
 local Tab5 = Window:MakeTab({
-    Name = "Menu",
+    Name = "home",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
@@ -94,7 +94,7 @@ local Tab2 = Window:MakeTab({
     PremiumOnly = false
 })
 
-Tab2:AddParagraph("Versão do Script:", "V1.5")
+Tab2:AddParagraph("Versão do Script:", "V2.5")
 Tab2:AddParagraph("Data de criação", "03/06/2024")
 Tab2:AddParagraph("Criado:", "JR_Smink")
 
@@ -149,7 +149,7 @@ Tab2:AddButton({
 
 local Tab1 = Window:MakeTab({
     Name = "ESP",
-    Icon = "rbxassetid://4483345998",
+    Icon = "accessibility",
     PremiumOnly = false
 })
 
@@ -366,7 +366,7 @@ Tab1:AddToggle({
 
 local Tab = Window:MakeTab({
     Name = "Player & Controles",
-    Icon = "rbxassetid://4483345998",
+    Icon = "person-standing",
     PremiumOnly = false
 })
 
@@ -510,7 +510,7 @@ Tab:AddButton({
 
 local Tab6 = Window:MakeTab({
 	Name = "Visual",
-	Icon = "rbxassetid://4483345998",
+	Icon = "eye",
 	PremiumOnly = false
 })
 
@@ -686,7 +686,7 @@ Tab6:AddDropdown({
 
 local Tab3 = Window:MakeTab({
     Name = "Créditos",
-    Icon = "rbxassetid://4483345998",
+    Icon = "settings",
     PremiumOnly = false
 })
 
